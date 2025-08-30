@@ -1,5 +1,6 @@
-use clap::{Parser, Subcommand};
+use clap::{CommandFactory, Parser, Subcommand, ValueEnum};
 use strum::{EnumIter, IntoEnumIterator};
+use clap_complete::{generate, Shell};
 
 #[derive(Parser)]
 #[command(name = "greet")]
@@ -39,6 +40,21 @@ enum Commands {
     },
     /// List all available languages
     Languages,
+    /// Generate completions for your own shell (shipped with the homebrew version)
+    GenerateCompletions(GenerateCompletionsArgs),
+}
+#[derive(Parser)]
+pub struct GenerateCompletionsArgs {
+    /// Specify which shell you target - accepted values: bash, fish, zsh
+    #[arg(long, value_enum)]
+    pub shell: AvailableShells,
+}
+
+#[derive(Copy, Clone, PartialEq, Eq, PartialOrd, Ord, ValueEnum)]
+pub enum AvailableShells {
+    Bash,
+    Fish,
+    Zsh,
 }
 
 #[derive(Clone, Copy, PartialEq, Eq, EnumIter)]
@@ -75,6 +91,15 @@ impl std::fmt::Display for Language {
             Language::It => write!(f, "it"),
         }
     }
+}
+
+fn generate_completion(shell: Shell) {
+    generate(
+        shell,
+        &mut Cli::command(),
+        "greet",
+        &mut std::io::stdout(),
+    )
 }
 
 fn generate_message(name: &str, language: Language, scream: bool, is_greeting: bool) -> String {
@@ -141,5 +166,10 @@ fn main() {
                 }
             }
         }
+        Commands::GenerateCompletions(flags) => match flags.shell {
+            AvailableShells::Bash => generate_completion(Shell::Bash),
+            AvailableShells::Fish => generate_completion(Shell::Fish),
+            AvailableShells::Zsh => generate_completion(Shell::Zsh),
+        },
     }
 }
