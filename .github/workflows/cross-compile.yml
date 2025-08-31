@@ -87,9 +87,9 @@ jobs:
       - name: Upload Binaries
         run: |
           gh release upload ${{ env.RELEASE_NAME }} \
-            ./tmp/{{ env.BINARY_NAME }}-x86_64-unknown-linux-gnu.tar.gz \
-            ./tmp/{{ env.BINARY_NAME }}-x86_64-apple-darwin.tar.gz \
-            ./tmp/{{ env.BINARY_NAME }}-aarch64-apple-darwin.tar.gz \
+            ./tmp/${{ env.BINARY_NAME }}-x86_64-unknown-linux-gnu.tar.gz \
+            ./tmp/${{ env.BINARY_NAME }}-x86_64-apple-darwin.tar.gz \
+            ./tmp/${{ env.BINARY_NAME }}-aarch64-apple-darwin.tar.gz \
             ./tmp/sha256.txt
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
