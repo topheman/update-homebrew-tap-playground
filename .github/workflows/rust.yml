@@ -49,3 +49,5 @@ jobs:
       - name: Upload description file
         run: |
           gh release upload ${{ env.RELEASE_NAME }} ./tmp/description.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

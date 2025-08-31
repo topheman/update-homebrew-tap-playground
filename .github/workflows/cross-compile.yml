@@ -76,3 +76,5 @@ jobs:
             ${{ env.BINARY_NAME }}-x86_64-apple-darwin.tar.gz \
             ${{ env.BINARY_NAME }}-aarch64-apple-darwin.tar.gz \
             sha256.txt
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
