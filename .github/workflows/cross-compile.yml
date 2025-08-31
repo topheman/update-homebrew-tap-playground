@@ -64,6 +64,7 @@ jobs:
     env:
       RELEASE_NAME: ${{ github.ref_name }}
     steps:
+      - uses: actions/checkout@v4
       - name: Create a release draft if it doesn't exist
         run: ./scripts/create-release-if-not-exist.sh ${{ env.RELEASE_NAME }} --draft --generate-notes
       - name: Upload Binaries
