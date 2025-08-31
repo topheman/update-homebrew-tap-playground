@@ -43,7 +43,7 @@ jobs:
           path: ./tmp
           key: ${{ runner.os }}-description-file-${{ github.sha }}
       - name: Create release draft if it doesn't exist
-        uses: topheman/create-release-if-not-exist@master
+        uses: topheman/create-release-if-not-exist@v1
         with:
           args: ${{ env.RELEASE_NAME }} --draft --generate-notes
       - name: Upload description file
