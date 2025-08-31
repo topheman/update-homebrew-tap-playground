@@ -42,19 +42,7 @@ jobs:
           path: ./tmp
           key: ${{ runner.os }}-description-file-${{ github.sha }}
       - name: Create a release draft if it doesn't exist
-        run: |
-          RELEASE_NAME=${{ env.RELEASE_NAME }}
-          gh release view $RELEASE_NAME > /dev/null 2>&1
-          if [[ "$(gh release view $RELEASE_NAME 2>&1)" == "release not found" ]]; then
-            echo "Release not found. Creating release draft..."
-            gh release create $RELEASE_NAME --draft --title "$RELEASE_NAME"
-            echo "release-exists=false" >> $GITHUB_OUTPUT
-            echo "release-created=true" >> $GITHUB_OUTPUT
-          else
-            echo "Release found."
-            echo "release-exists=true" >> $GITHUB_OUTPUT
-            echo "release-created=false" >> $GITHUB_OUTPUT
-          fi
+        run: ./scripts/create-release-if-not-exist.sh ${{ env.RELEASE_NAME }} --draft --generate-notes
       - name: Upload description file
         run: |
           gh release upload ${{ env.RELEASE_NAME }} ./tmp/description.txt
