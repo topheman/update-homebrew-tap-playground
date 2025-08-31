@@ -53,9 +53,9 @@ jobs:
 
     - name: Calculate sha256
       run: |
-        shasum -a 256 ./tmp/${{ env.BINARY_NAME }}-x86_64-unknown-linux-gnu.tar.gz >> sha256.txt
-        shasum -a 256 ./tmp/${{ env.BINARY_NAME }}-x86_64-apple-darwin.tar.gz >> sha256.txt
-        shasum -a 256 ./tmp/${{ env.BINARY_NAME }}-aarch64-apple-darwin.tar.gz >> sha256.txt
+        shasum -a 256 ./tmp/${{ env.BINARY_NAME }}-x86_64-unknown-linux-gnu.tar.gz >> ./tmp/sha256.txt
+        shasum -a 256 ./tmp/${{ env.BINARY_NAME }}-x86_64-apple-darwin.tar.gz >> ./tmp/sha256.txt
+        shasum -a 256 ./tmp/${{ env.BINARY_NAME }}-aarch64-apple-darwin.tar.gz >> ./tmp/sha256.txt
     - name: Cache
       if: github.ref_type == 'tag'
       id: cache-cross-compiled-artifacts
