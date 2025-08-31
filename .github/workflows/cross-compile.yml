@@ -9,7 +9,7 @@ env:
 
 jobs:
   build:
-    if: false && github.ref_type == 'tag'
+    if: github.ref_type == 'tag'
     runs-on: ubuntu-latest
 
     steps:
@@ -80,10 +80,10 @@ jobs:
         with:
           path: ./tmp
           key: ${{ runner.os }}-cross-compiled-artifacts-${{ github.sha }}
-      - name: Create a release draft if it doesn't exist
-        run: ./scripts/create-release-if-not-exist.sh ${{ env.RELEASE_NAME }} --draft --generate-notes
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Create release draft if it doesn't exist
+        uses: topheman/create-release-if-not-exist@master
+        with:
+          args: ${{ env.RELEASE_NAME }} --draft --generate-notes
       - name: Upload Binaries
         run: |
           gh release upload ${{ env.RELEASE_NAME }} \
