@@ -67,6 +67,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: Create a release draft if it doesn't exist
         run: ./scripts/create-release-if-not-exist.sh ${{ env.RELEASE_NAME }} --draft --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload Binaries
         run: |
           gh release upload ${{ env.RELEASE_NAME }} \

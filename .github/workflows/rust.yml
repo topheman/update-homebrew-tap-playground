@@ -44,6 +44,8 @@ jobs:
           key: ${{ runner.os }}-description-file-${{ github.sha }}
       - name: Create a release draft if it doesn't exist
         run: ./scripts/create-release-if-not-exist.sh ${{ env.RELEASE_NAME }} --draft --generate-notes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Upload description file
         run: |
           gh release upload ${{ env.RELEASE_NAME }} ./tmp/description.txt
