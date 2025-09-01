@@ -21,8 +21,12 @@ jobs:
           formula-target-file: Formula/greet.rb
           formula-template: homebrew/formula.rb.ejs
           tar-files: |
-            linux-intel=https://github.com/topheman/update-homebrew-tap-playground/releases/download/${{ github.ref_name }}/greet-x86_64-unknown-linux-gnu.tar.gz
-            mac-arm=https://github.com/topheman/update-homebrew-tap-playground/releases/download/${{ github.ref_name }}/greet-aarch64-apple-darwin.tar.gz
-            mac-intel=https://github.com/topheman/update-homebrew-tap-playground/releases/download/${{ github.ref_name }}/greet-x86_64-apple-darwin.tar.gz
+            {
+              "linux-intel": "https://github.com/topheman/update-homebrew-tap-playground/releases/download/${{ github.ref_name }}/greet-x86_64-unknown-linux-gnu.tar.gz",
+              "mac-arm": "https://github.com/topheman/update-homebrew-tap-playground/releases/download/${{ github.ref_name }}/greet-aarch64-apple-darwin.tar.gz",
+              "mac-intel": "https://github.com/topheman/update-homebrew-tap-playground/releases/download/${{ github.ref_name }}/greet-x86_64-apple-darwin.tar.gz"
+            }
           metadata: |
-            version=${{ github.ref_name }}
+            {
+              "version": "${{ github.ref_name }}"
+            }
