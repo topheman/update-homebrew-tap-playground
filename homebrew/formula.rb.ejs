@@ -1,0 +1,30 @@
+class Greet < Formula
+  desc "Greet CLI application"
+  homepage "https://github.com/topheman/update-homebrew-tap-playground"
+  version "<%= metadata.version %>"
+  license "MIT"
+
+  if OS.linux? && Hardware::CPU.intel?
+    url "<%= urls["linux-intel"].url %>"
+    sha256 "<%= urls["linux-intel"].sha256 %>"
+  end
+  if OS.mac? && Hardware::CPU.arm?
+    url "<%= urls["mac-arm"].url %>"
+    sha256 "<%= urls["mac-arm"].sha256 %>"
+  end
+  if OS.mac? && Hardware::CPU.intel?
+    url "<%= urls["mac-intel"].url %>"
+    sha256 "<%= urls["mac-intel"].sha256 %>"
+  end
+
+  def install
+    bin.install "greet"
+    bash_completion.install "completions/bash/greet"
+    fish_completion.install "completions/fish/greet.fish"
+    zsh_completion.install "completions/zsh/_greet"
+  end
+
+  test do
+    system "#{bin}/greet", "--version"
+  end
+end
