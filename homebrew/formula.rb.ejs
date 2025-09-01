@@ -5,16 +5,16 @@ class Greet < Formula
   license "MIT"
 
   if OS.linux? && Hardware::CPU.intel?
-    url "<%= urls["linux-intel"].url %>"
-    sha256 "<%= urls["linux-intel"].sha256 %>"
+    url "<%= tarfiles["linux-intel"].url %>"
+    sha256 "<%= tarfiles["linux-intel"].sha256 %>"
   end
   if OS.mac? && Hardware::CPU.arm?
-    url "<%= urls["mac-arm"].url %>"
-    sha256 "<%= urls["mac-arm"].sha256 %>"
+    url "<%= tarfiles["mac-arm"].url %>"
+    sha256 "<%= tarfiles["mac-arm"].sha256 %>"
   end
   if OS.mac? && Hardware::CPU.intel?
-    url "<%= urls["mac-intel"].url %>"
-    sha256 "<%= urls["mac-intel"].sha256 %>"
+    url "<%= tarfiles["mac-intel"].url %>"
+    sha256 "<%= tarfiles["mac-intel"].sha256 %>"
   end
 
   def install
