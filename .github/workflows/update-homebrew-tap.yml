@@ -33,3 +33,4 @@ jobs:
               "homepage": "https://github.com/topheman/update-homebrew-tap-playground",
               "license": "MIT"
             }
+          github-token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
