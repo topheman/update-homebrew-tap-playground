@@ -46,7 +46,7 @@ jobs:
           mkdir -p ./compressed
           cd ./tmp/${{ matrix.platform.target }}
           tar -cvf ${{ env.BINARY_NAME }}-${{ matrix.platform.target }}.tar.gz ${{ env.BINARY_NAME }} completions
-          mv ${{ env.BINARY_NAME }}-${{ matrix.platform.target }}.tar.gz ../compressed
+          mv ${{ env.BINARY_NAME }}-${{ matrix.platform.target }}.tar.gz ../../compressed
       - name: Cache compressed binaries
         uses: actions/cache@v4
         with:
