@@ -27,7 +27,7 @@ jobs:
             }
           metadata: |
             {
-              "version": "${{ github.ref_name }}"
+              "version": "${{ github.ref_name }}",
               "binaryName": "greet",
               "description": "Greet CLI application",
               "homepage": "https://github.com/topheman/update-homebrew-tap-playground",
