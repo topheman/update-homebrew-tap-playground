@@ -2,4 +2,4 @@
 
 Playground for the [topheman/update-homebrew-tap](https://github.com/topheman/update-homebrew-tap) action.
 
-Publishing taps to [topheman/test-homebrew-tap](https://github.com/topheman/test-homebrew-tap).
+Publishing taps to [topheman/homebrew-test-tap](https://github.com/topheman/homebrew-test-tap).
