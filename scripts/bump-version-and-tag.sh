@@ -5,8 +5,8 @@ set -e  # Exit on any error
 
 echo "🚀 Starting version bump process..."
 
-# Read current version from Cargo.toml
-current_version=$(grep '^version = ' Cargo.toml | sed 's/version = "\(.*\)"/\1/')
+# Read current version using cargo CLI
+current_version=$(cargo pkgid | cut -d '#' -f2)
 echo "📋 Current version: $current_version"
 
 # Extract major, minor, and patch components
