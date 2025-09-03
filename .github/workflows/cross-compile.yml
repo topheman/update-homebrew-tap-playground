@@ -82,6 +82,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Create release draft
         uses: topheman/create-release-if-not-exist@v1
         with:
