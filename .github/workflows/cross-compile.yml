@@ -106,6 +106,7 @@ jobs:
           - target: aarch64-apple-darwin
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v4
       - name: Restore cached compressed binaries
         uses: actions/cache/restore@v4
         with:
